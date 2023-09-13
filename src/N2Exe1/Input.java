@@ -100,6 +100,22 @@ public class Input {
 		return response;	
 	}
 	
+	public static float inputFloat (String pregunta) {
+		float response = 0.0F;
+		boolean okey = false;
+		do {
+			System.out.println(pregunta);
+			try {
+				response = input.nextFloat();
+				okey = true;
+			} catch (InputMismatchException ex) {
+				System.out.println("There is a format error on your response.");
+			}
+			input.nextLine();
+		} while (!okey);		
+		return response;	
+	}
+	
 	public static boolean inputYesNo (String pregunta) {
         boolean booleanResponse = false;
         boolean okey = false;
@@ -166,12 +182,13 @@ public class Input {
  * por ejemplo: “Introduce tu edad”, y devuelven el dato oportuno introducido OK
  * por el usuario en cada método, por ejemplo: uno byte con la edad del usuario/a. OK
  * Métodos a implantar capturando la excepción de la clase InputMismatchException:
- * public static byte leerByte(String mensaje);
- * public static int leerInt(String mensaje);
- * public static float leerFloat(String mensaje);
- * public static double leerDouble(String mensaje);
- * Métodos a implantar capturando la excepción de la clase Exception:
- * public static char leerChar(String mensaje);
- * public static String leerString(String mensaje);
- * public static boolean leerSiNo(String mensaje), si el usuario introduce “s”, devuelve “true”, si el usuario introduce “n”, devuelve “false”.
+ * public static byte leerByte(String mensaje); OK
+ * public static int leerInt(String mensaje); OK
+ * public static float leerFloat(String mensaje); OK
+ * public static double leerDouble(String mensaje); OK
+ * Métodos a implantar capturando la excepción de la clase Exception: OK
+ * public static char leerChar(String mensaje); OK
+ * public static String leerString(String mensaje); OK
+ * public static boolean leerSiNo(String mensaje), si el usuario introduce “s”,OK
+ * devuelve “true”, si el usuario introduce “n”, devuelve “false”. OK
  */
