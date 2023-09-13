@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Input {
 	
-	private static final Scanner input = new Scanner(System.in); //Reusing the class Tool created during study
+	private static final Scanner input = new Scanner(System.in); //Reusing part of the class Tool created during study
 	
 	public static byte inputByte (String pregunta) {
 		byte response = 0;
