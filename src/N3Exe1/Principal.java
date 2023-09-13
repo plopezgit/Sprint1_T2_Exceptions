@@ -29,17 +29,17 @@ Clase Principal OK
 Tendrá el main de la aplicación donde se instanciará un objeto de la clase Cine OK
 y llamará a su método iniciar. OK
 
-Clase Butaca
-Tendrá los datos de un sillón:
-Atributos:
-Número de fila.
-Número de asiento.
-Persona que reserva el sillón.
-Métodos:
-Constructor con todos sus parámetros.
-Getters por todos los atributos.
-Equals: devolverá que dos butacas son iguales si la fila y el asiento son iguales.
-toString: devolverá un String con el siguiente formato: “Fila: 5, Asiento: 20, Persona: Maria Febrer”
+Clase Butaca OK
+Tendrá los datos de un sillón: OK
+Atributos: OK
+Número de fila. OK
+Número de asiento. OK
+Persona que reserva el sillón. OK
+Métodos: OK
+Constructor con todos sus parámetros. OK
+Getters por todos los atributos. OK
+Equals: devolverá que dos butacas son iguales si la fila y el asiento son iguales. OK
+toString: devolverá un String con el siguiente formato: “Fila: 5, Asiento: 20, Persona: Maria Febrer” OK
 
 Clase Cine
 Contendrá todos los métodos que permiten interactuar al usuario con la aplicación.
