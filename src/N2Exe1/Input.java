@@ -7,6 +7,22 @@ public class Input {
 	
 	private static final Scanner input = new Scanner(System.in); //Reusing the class Tool created during study
 	
+	public static byte inputByte (String pregunta) {
+		byte response = 0;
+		boolean okey = false;
+		do {
+			System.out.println(pregunta);
+			try {
+				response = input.nextByte();
+				okey = true;
+			} catch (InputMismatchException ex) {
+				System.out.println("There is a format error on your response.");
+			}
+			input.nextLine();
+		} while (!okey);
+		return response;
+	}
+	
 	public static int inputInt (String pregunta) {
 		int response = 0;
 		boolean okey = false;
@@ -131,24 +147,24 @@ public class Input {
 }
 
 /*
- * Crea una clase llamada "Entrada". 
- * Esta clase debe servir para controlar las distintas excepciones 
- * que pueden aparecer en Java a la hora de introducir datos por teclado 
- * utilizando la clase Scanner.
+ * Crea una clase llamada "Entrada". OK 
+ * Esta clase debe servir para controlar las distintas excepciones OK
+ * que pueden aparecer en Java a la hora de introducir datos por teclado OK
+ * utilizando la clase Scanner. OK
  * 
- * Lo primero que debe hacerse es instanciar un objeto de la clase Scanner ya partir de ahí, 
- * crear métodos estáticos para leer los diferentes tipos de datos desde el teclado.
+ * Lo primero que debe hacerse es instanciar un objeto de la clase Scanner ya partir de ahí, OK
+ * crear métodos estáticos para leer los diferentes tipos de datos desde el teclado. OK
  * 
  * Importante
- * Es importante que si en algún método salta una excepción, 
- * la tratamos y volvemos a pedir el dato al usuario hasta que éste esté bien introducido. 
- * Por ejemplo: Si introduce un float con un punto en lugar de con una coma, 
- * debe mostrar “Error de formato”. Hasta que el usuario/a no introduce 
- * un float bien formado debe seguir pidiendo el dato.
+ * Es importante que si en algún método salta una excepción, OK
+ * la tratamos y volvemos a pedir el dato al usuario hasta que éste esté bien introducido. OK
+ * Por ejemplo: Si introduce un float con un punto en lugar de con una coma, OK
+ * debe mostrar “Error de formato”. Hasta que el usuario/a no introduce OK
+ * un float bien formado debe seguir pidiendo el dato. OK
  * 
- * Todos los métodos reciben un String con el mensaje que se quiere mostrar al usuario, 
- * por ejemplo: “Introduce tu edad”, y devuelven el dato oportuno introducido 
- * por el usuario en cada método, por ejemplo: uno byte con la edad del usuario/a.
+ * Todos los métodos reciben un String con el mensaje que se quiere mostrar al usuario, OK
+ * por ejemplo: “Introduce tu edad”, y devuelven el dato oportuno introducido OK
+ * por el usuario en cada método, por ejemplo: uno byte con la edad del usuario/a. OK
  * Métodos a implantar capturando la excepción de la clase InputMismatchException:
  * public static byte leerByte(String mensaje);
  * public static int leerInt(String mensaje);
