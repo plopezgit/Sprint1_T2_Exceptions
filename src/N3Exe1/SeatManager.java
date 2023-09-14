@@ -11,30 +11,48 @@ public class SeatManager {
 	public SeatManager() {
 		
 		seatList = new ArrayList<Seat>();
-		seatList.add(new Seat(1,2, "client1"));
-		seatList.add(new Seat(1,3, "client1"));
-		seatList.add(new Seat(3,5, "client2"));
-		seatList.add(new Seat(2,5, "client1"));
 
 	}
 
 	public ArrayList<Seat> getSeatList() {
-		
-		return seatList;
-	}
-	
-	public ArrayList<Seat> addSeat () throws TakenSeatException {
 	
 		return seatList;
 	}
 	
-	public ArrayList<Seat> deleteSeat () throws FreeSeatException {
-		
+	public ArrayList<Seat> addSeat (Seat seat) throws TakenSeatException {
+		if (existSeat (seat.getRowNumber(), seat.getSeatNumber()) != 1) {
+			throw new TakenSeatException ("...");
+			
+		} else {
+			seatList.add(seat);
+			
+		}
 		return seatList;
 	}
 	
-	public int existSeat () { //Ref: https://refactorizando.com/encontrar-elemento-lista-java/
-		int seatIndex = 0;
+	public ArrayList<Seat> deleteSeat (int rowNumber, int seatNumber) throws FreeSeatException {
+		if (existSeat (rowNumber, seatNumber) == -1) {
+			throw new FreeSeatException ("...");
+			
+		} else {
+			seatList.remove(existSeat (rowNumber, seatNumber));
+			
+		}
+		return seatList;
+	}
+	
+	public int existSeat (int rowNumber, int seatNumber) { //Ref: https://refactorizando.com/encontrar-elemento-lista-java/
+		int seatIndex = -1;
+		int i = 0;
+
+		while (seatIndex==-1 && seatList.size() != i) {
+			if (seatList.get(i).getRowNumber() == (rowNumber) && seatList.get(i).getSeatNumber() == (seatNumber)) {
+				seatIndex = i;
+			}else {
+				seatIndex = -1;
+				i++;		
+			}
+		}
 		return seatIndex;
 	}
 

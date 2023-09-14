@@ -3,9 +3,12 @@ package N3Exe1;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import N3Exe1.Exceptions.IncorrectRowException;
+import N3Exe1.Exceptions.IncorrectSeatException;
+
 public class Cine {
-	private int theaterNumberOfRows;
-	private int theaterNumberOfSeatsbyRow;
+	private int theaterQuantityOfRows;
+	private int theaterQuantityOfSeatsByRow;
 	private SeatManager seatManager;
 
 	public Cine() {
@@ -81,27 +84,47 @@ public class Cine {
 
 	}
 
-	public void createClientOfTheather() {
-
+	public String introduceClientOfTheather() {
+		String clientName = Input.inputString("Client name: ");
+		
+		return clientName;
 	}
 
 	public void askInitialDataOfTheater() {
-		theaterNumberOfRows = Input.inputInt("Introduce the number of rows of the Cinema:");
-		theaterNumberOfSeatsbyRow = Input.inputInt("Introduce the number of seats by row:");
+		theaterQuantityOfRows = Input.inputInt("Set the quantity of rows of the Cinema:");
+		theaterQuantityOfSeatsByRow = Input.inputInt("Set the quantity of seats by row:");
 	}
 
-	public void createRowOfTheather(int rowNumber) {
+	public int introduceRowOfTheather() throws IncorrectRowException {
+		int rowNumber = Input.inputInt("Row number: ");
+		int ok = -1;
+		if (rowNumber <= 1 && rowNumber <= theaterQuantityOfRows) {
+			ok = rowNumber; 
+		} else {
+			throw new IncorrectRowException ("Row incorrect.\n");
 
+		}
+		
+		return ok;
 	}
 
-	public void createSeatOfRowOfTheather(int seatNumber) {
-
+	public int introduceSeatOfRowOfTheather() throws IncorrectSeatException {
+		int seatNumber = Input.inputInt("Seat number: ");
+		int ok = -1;
+		if (seatNumber <= 1 && seatNumber <= theaterQuantityOfSeatsByRow) {
+			ok = seatNumber; 
+		} else {
+			throw new IncorrectSeatException ("...");
+			
+		}
+		
+		return ok;
 	}
 
 	@Override
 	public String toString() {
-		return "Cine [theaterNumberOfRows=" + theaterNumberOfRows + ", theaterNumberOfSeatsbyRow="
-				+ theaterNumberOfSeatsbyRow + "]";
+		return "Cine [theaterNumberOfRows=" + theaterQuantityOfRows + ", theaterNumberOfSeatsbyRow="
+				+ theaterQuantityOfSeatsByRow + "]";
 	}
 
 }
