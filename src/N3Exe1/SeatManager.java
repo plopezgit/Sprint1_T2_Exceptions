@@ -41,7 +41,7 @@ public class SeatManager {
 	}
 	
 	public int existSeat (int rowNumber, int seatNumber) { //After Task1 Feedback
-		Seat seat = new Seat(rowNumber, seatNumber, null);
+		Seat seat = new Seat(rowNumber, seatNumber);
 		int seatIndex = seatList.indexOf(seat);
 		
 		return seatIndex;

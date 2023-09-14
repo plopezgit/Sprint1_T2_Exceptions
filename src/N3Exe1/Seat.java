@@ -11,6 +11,11 @@ public class Seat {
 		this.seatNumber = seatNumber;
 		this.clientName = clientName;
 	}
+	
+	public Seat(int rowNumber, int seatNumber) {
+		this.rowNumber = rowNumber;
+		this.seatNumber = seatNumber;
+	}
 
 	public int getRowNumber() {
 		return rowNumber;
