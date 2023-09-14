@@ -20,8 +20,8 @@ public class SeatManager {
 	}
 	
 	public ArrayList<Seat> addSeat (Seat seat) throws TakenSeatException {
-		if (existSeat (seat.getRowNumber(), seat.getSeatNumber()) != 1) {
-			throw new TakenSeatException ("...");
+		if (existSeat (seat.getRowNumber(), seat.getSeatNumber()) == 1) {
+			throw new TakenSeatException ("The seat is already reserved.\n");
 			
 		} else {
 			seatList.add(seat);

@@ -5,6 +5,7 @@ import java.util.Iterator;
 
 import N3Exe1.Exceptions.IncorrectRowException;
 import N3Exe1.Exceptions.IncorrectSeatException;
+import N3Exe1.Exceptions.TakenSeatException;
 
 public class Cine {
 	private int theaterQuantityOfRows;
@@ -73,6 +74,15 @@ public class Cine {
 	}
 
 	public void reserveSeatOfTheaterByClient() {
+		try {
+			seatManager.addSeat(new Seat(introduceRowOfTheather(), introduceSeatOfRowOfTheather(), introduceClientOfTheather()));
+		} catch (TakenSeatException e) {
+			System.out.println(e.getMessage());
+		} catch (IncorrectRowException e) {
+			System.out.println(e.getMessage());
+		} catch (IncorrectSeatException e) {
+			System.out.println(e.getMessage());
+		}
 
 	}
 
@@ -98,7 +108,7 @@ public class Cine {
 	public int introduceRowOfTheather() throws IncorrectRowException {
 		int rowNumber = Input.inputInt("Row number: ");
 		int ok = -1;
-		if (rowNumber <= 1 && rowNumber <= theaterQuantityOfRows) {
+		if (rowNumber >= 1 && rowNumber <= theaterQuantityOfRows) {
 			ok = rowNumber; 
 		} else {
 			throw new IncorrectRowException ("Row incorrect.\n");
@@ -111,10 +121,10 @@ public class Cine {
 	public int introduceSeatOfRowOfTheather() throws IncorrectSeatException {
 		int seatNumber = Input.inputInt("Seat number: ");
 		int ok = -1;
-		if (seatNumber <= 1 && seatNumber <= theaterQuantityOfSeatsByRow) {
+		if (seatNumber >= 1 && seatNumber <= theaterQuantityOfSeatsByRow) {
 			ok = seatNumber; 
 		} else {
-			throw new IncorrectSeatException ("...");
+			throw new IncorrectSeatException ("Seat incorrect.\n");
 			
 		}
 		
