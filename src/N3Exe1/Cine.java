@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import N3Exe1.Exceptions.FreeSeatException;
+import N3Exe1.Exceptions.IncorrectClientNameException;
 import N3Exe1.Exceptions.IncorrectRowException;
 import N3Exe1.Exceptions.IncorrectSeatException;
 import N3Exe1.Exceptions.TakenSeatException;
@@ -19,25 +20,26 @@ public class Cine {
 
 	}
 
-	// Class method
+	// Class methods
 
-	public void start(int option) {
-
-			switch (option) {
+	public void start() {
+		int option = 0;
+		do {
+			switch (option = menu()) {
 			case 1:
-				System.out.println(showReservedSeatsOfTheater().toString());
+				System.out.println(showReservedSeatsOfTheater() + "\n");
 				break;
 			case 2:
-				System.out.println(showReservedSeatsOfTheaterByClient(Input.inputStringLow("Client name:")));	
+				System.out.println(showReservedSeatsOfTheaterByClient()+ "\n");	
 				break;
 			case 3:
-				reserveSeatOfTheaterByClient();
+				System.out.println(reserveSeatOfTheaterByClient()+ "\n");
 				break;
 			case 4:
-				deleteReserveSeatOfTheater();
+				System.out.println(deleteReserveSeatOfTheater()+ "\n");
 				break;
 			case 5:
-				deleteReserveSeatOfTheaterByClient();
+				System.out.println(deleteReserveSeatOfTheaterByClient()+ "\n");
 				break;
 			case 6:
 				System.out.println("Bye.\n");
@@ -46,35 +48,37 @@ public class Cine {
 				System.out.println("Option not available.\n");
 
 			}
+		} while (option != 6);
+			
 	}
 
 	public int menu() {
 
-		String mainMenu = "Ok. What do you want to do?\n" + "(1)Show reserved seats.\n"
+		String mainMenu = "What do you want to do?\n" + "(1)Show reserved seats.\n"
 				+ "(2)Show reserved setas by client.\n" + "(3)Reserve seat.\n" + "(4)Delete reserve.\n"
 				+ "(5)Delete all reserves by client.\n" + "(6)Exit.\n";
-
+	
 		return Input.inputInt(mainMenu);
 	}
 
 	public ArrayList<Seat> showReservedSeatsOfTheater() {
 
-		return seatManager.seatList;
+		return seatManager.getSeatList();
 	}
 
-	public ArrayList<Seat> showReservedSeatsOfTheaterByClient(String clientName) {
-		ArrayList<Seat> reservedSeatsOfTheaterByClient = new ArrayList<Seat>();
-		Iterator<Seat> iterator = seatManager.seatList.iterator();
-		while (iterator.hasNext()) {
-			Seat seat = iterator.next();
-			if (seat.getClientName().equals(clientName)) {
-				reservedSeatsOfTheaterByClient.add(seat);
+	public ArrayList<Seat> showReservedSeatsOfTheaterByClient() {
+		String clientName = Input.inputString("Client name: ");
+		ArrayList<Seat> tempReservedSeatsOfTheaterByClient = new ArrayList<Seat>();
+		for (Seat seat : seatManager.getSeatList()) {
+			if (seat.getClientName().equalsIgnoreCase(clientName)) {
+				tempReservedSeatsOfTheaterByClient.add(seat);
 			} 
 		}
-		return reservedSeatsOfTheaterByClient;
+		
+		return tempReservedSeatsOfTheaterByClient;
 	}
 
-	public void reserveSeatOfTheaterByClient() {
+	public ArrayList<Seat> reserveSeatOfTheaterByClient() {
 		try {
 			seatManager.addSeat(new Seat(introduceRowOfTheather(), introduceSeatOfRowOfTheather(), introduceClientOfTheather()));
 		} catch (TakenSeatException e) {
@@ -83,11 +87,14 @@ public class Cine {
 			System.out.println(e.getMessage());
 		} catch (IncorrectSeatException e) {
 			System.out.println(e.getMessage());
+		} catch (IncorrectClientNameException e) {
+			System.out.println(e.getMessage());
 		}
-
+		
+		return seatManager.getSeatList();
 	}
 
-	public void deleteReserveSeatOfTheater() {
+	public ArrayList<Seat> deleteReserveSeatOfTheater() {
 		try {
 			seatManager.deleteSeat(introduceRowOfTheather(), introduceSeatOfRowOfTheather());
 		} catch (FreeSeatException e) {
@@ -97,17 +104,38 @@ public class Cine {
 		} catch (IncorrectSeatException e) {
 			System.out.println(e.getMessage());
 		}
-
-	}
-
-	public void deleteReserveSeatOfTheaterByClient() {
-
-	}
-
-	public String introduceClientOfTheather() {
-		String clientName = Input.inputString("Client name: ");
 		
-		return clientName;
+		return seatManager.getSeatList();
+	}
+
+	public ArrayList<Seat> deleteReserveSeatOfTheaterByClient() {
+		try {
+			String clientName = introduceClientOfTheather();
+			Iterator<Seat> iterator = seatManager.getSeatList().iterator();
+			Seat seat;
+			while (iterator.hasNext()) {
+				seat = iterator.next();
+				if (seat.getClientName().equals(clientName)) {
+					iterator.remove();
+				} 
+			}
+		} catch (IncorrectClientNameException e) {
+			System.out.println(e.getMessage());
+		}
+	
+		return seatManager.getSeatList();
+	}
+
+	public String introduceClientOfTheather() throws IncorrectClientNameException {
+		String validName;
+		String clientName = Input.inputString("Client name: ");
+		if (clientName.matches(".*[0-9].*")) {
+			throw new IncorrectClientNameException ("The name must not contain numbers.\n");
+		} else {
+			validName = clientName;
+		}
+		
+		return validName;
 	}
 
 	public void askInitialDataOfTheater() {
@@ -116,35 +144,29 @@ public class Cine {
 	}
 
 	public int introduceRowOfTheather() throws IncorrectRowException {
+		int validRowNuber;
 		int rowNumber = Input.inputInt("Row number: ");
-		int ok = -1;
 		if (rowNumber >= 1 && rowNumber <= theaterQuantityOfRows) {
-			ok = rowNumber; 
+			validRowNuber = rowNumber; 
 		} else {
 			throw new IncorrectRowException ("Row incorrect.\n");
 
 		}
 		
-		return ok;
+		return validRowNuber;
 	}
 
 	public int introduceSeatOfRowOfTheather() throws IncorrectSeatException {
+		int validSeatNumber;
 		int seatNumber = Input.inputInt("Seat number: ");
-		int ok = -1;
 		if (seatNumber >= 1 && seatNumber <= theaterQuantityOfSeatsByRow) {
-			ok = seatNumber; 
+			validSeatNumber = seatNumber; 
 		} else {
 			throw new IncorrectSeatException ("Seat incorrect.\n");
 			
 		}
 		
-		return ok;
-	}
-
-	@Override
-	public String toString() {
-		return "Cine [theaterNumberOfRows=" + theaterQuantityOfRows + ", theaterNumberOfSeatsbyRow="
-				+ theaterQuantityOfSeatsByRow + "]";
+		return validSeatNumber;
 	}
 
 }

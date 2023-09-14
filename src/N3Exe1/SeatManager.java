@@ -6,13 +6,14 @@ import N3Exe1.Exceptions.*;
 
 public class SeatManager {
 	
-	ArrayList<Seat> seatList;
+	private ArrayList<Seat> seatList;
 
 	public SeatManager() {
-		
 		seatList = new ArrayList<Seat>();
 
 	}
+	
+	//Class methods
 
 	public ArrayList<Seat> getSeatList() {
 	
@@ -20,31 +21,28 @@ public class SeatManager {
 	}
 	
 	public ArrayList<Seat> addSeat (Seat seat) throws TakenSeatException {
-		if (existSeat (seat.getRowNumber(), seat.getSeatNumber()) == 1) {
+		if (existSeat (seat.getRowNumber(), seat.getSeatNumber()) != -1) {
 			throw new TakenSeatException ("The seat is already reserved.\n");
-			
 		} else {
-			seatList.add(seat);
-			
+			seatList.add(seat);	
 		}
+		
 		return seatList;
 	}
 	
 	public ArrayList<Seat> deleteSeat (int rowNumber, int seatNumber) throws FreeSeatException {
 		if (existSeat (rowNumber, seatNumber) == -1) {
-			throw new FreeSeatException ("...");
-			
+			throw new FreeSeatException ("The seat is free.\n");
 		} else {
 			seatList.remove(existSeat (rowNumber, seatNumber));
-			
 		}
+		
 		return seatList;
 	}
 	
 	public int existSeat (int rowNumber, int seatNumber) { //Ref: https://refactorizando.com/encontrar-elemento-lista-java/
 		int seatIndex = -1;
 		int i = 0;
-
 		while (seatIndex==-1 && seatList.size() != i) {
 			if (seatList.get(i).getRowNumber() == (rowNumber) && seatList.get(i).getSeatNumber() == (seatNumber)) {
 				seatIndex = i;
@@ -53,6 +51,7 @@ public class SeatManager {
 				i++;		
 			}
 		}
+		
 		return seatIndex;
 	}
 
