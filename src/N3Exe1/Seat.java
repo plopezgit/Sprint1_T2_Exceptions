@@ -20,7 +20,7 @@ public class Seat {
 		return seatNumber;
 	}
 
-	public String getClient() {
+	public String getClientName() {
 		return clientName;
 	}
 

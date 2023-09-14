@@ -4,7 +4,9 @@ public class Principal {
 
 	public static void main(String[] args) {
 		Cine cine = new Cine();
-			cine.start();
+		do {
+			cine.start(cine.menu());
+		} while (cine.menu() != 6);
 	}
 }
 
