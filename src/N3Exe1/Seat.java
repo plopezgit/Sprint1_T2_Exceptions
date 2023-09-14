@@ -4,12 +4,12 @@ public class Seat {
 	
 	private int rowNumber;
 	private int seatNumber;
-	private Client client;
+	private String clientName;
 	
-	public Seat(int rowNumber, int seatNumber, Client client) {
+	public Seat(int rowNumber, int seatNumber, String clientName) {
 		this.rowNumber = rowNumber;
 		this.seatNumber = seatNumber;
-		this.client = client;
+		this.clientName = clientName;
 	}
 
 	public int getRowNumber() {
@@ -20,8 +20,8 @@ public class Seat {
 		return seatNumber;
 	}
 
-	public Client getClient() {
-		return client;
+	public String getClient() {
+		return clientName;
 	}
 
 	@Override
@@ -51,7 +51,7 @@ public class Seat {
 
 	@Override
 	public String toString() {
-		return "Row: " + rowNumber + ", Seat: " + seatNumber + ", Client: " + client;
+		return "Row: " + rowNumber + ", Seat: " + seatNumber + ", Client: " + clientName;
 	}
 	
 	

@@ -1,5 +1,7 @@
 package N3Exe1;
 
+import java.util.ArrayList;
+
 public class Cine {
 	private int theaterNumberOfRows;
 	private int theaterNumberOfSeatsbyRow;
@@ -18,7 +20,7 @@ public class Cine {
 		do {
 			switch (menu()) {
 			case 1:
-				showReservedSeatsOfTheater ();
+				System.out.println(showReservedSeatsOfTheater().toString());
 				break;
 			case 2:
 				showReservedSeatsOfTheaterByClient ();
@@ -56,8 +58,9 @@ public class Cine {
 	}
 	
 	
-	public void showReservedSeatsOfTheater () {
+	public ArrayList<Seat> showReservedSeatsOfTheater () {
 		
+		return seatManager.seatList;
 	}
 	
 	public void showReservedSeatsOfTheaterByClient () {

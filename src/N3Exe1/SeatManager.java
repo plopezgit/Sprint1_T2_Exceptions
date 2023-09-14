@@ -11,6 +11,9 @@ public class SeatManager {
 	public SeatManager() {
 		
 		seatList = new ArrayList<Seat>();
+		seatList.add(new Seat(1,2, "client1"));
+		seatList.add(new Seat(3,5, "client2"));
+
 	}
 
 	public ArrayList<Seat> getSeatList() {
