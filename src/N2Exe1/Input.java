@@ -126,7 +126,7 @@ public class Input {
             try {
                 userResponse = input.nextLine().toUpperCase();
                 okey = true;
-                if (userResponse.charAt(0) == 'S') {
+                if (userResponse.charAt(0) == 'Y') {
                     booleanResponse = true;
                 } else if (userResponse.charAt(0) == 'N') {
                     booleanResponse = false;
