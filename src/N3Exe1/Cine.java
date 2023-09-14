@@ -3,6 +3,7 @@ package N3Exe1;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import N3Exe1.Exceptions.FreeSeatException;
 import N3Exe1.Exceptions.IncorrectRowException;
 import N3Exe1.Exceptions.IncorrectSeatException;
 import N3Exe1.Exceptions.TakenSeatException;
@@ -87,6 +88,15 @@ public class Cine {
 	}
 
 	public void deleteReserveSeatOfTheater() {
+		try {
+			seatManager.deleteSeat(introduceRowOfTheather(), introduceSeatOfRowOfTheather());
+		} catch (FreeSeatException e) {
+			System.out.println(e.getMessage());
+		} catch (IncorrectRowException e) {
+			System.out.println(e.getMessage());
+		} catch (IncorrectSeatException e) {
+			System.out.println(e.getMessage());
+		}
 
 	}
 
