@@ -149,7 +149,7 @@ public class Cine {
 		if (rowNumber >= 1 && rowNumber <= theaterQuantityOfRows) {
 			validRowNuber = rowNumber; 
 		} else {
-			throw new IncorrectRowException ("Row incorrect.\n");
+			throw new IncorrectRowException ("Row does not exist.\n");
 
 		}
 		
@@ -162,7 +162,7 @@ public class Cine {
 		if (seatNumber >= 1 && seatNumber <= theaterQuantityOfSeatsByRow) {
 			validSeatNumber = seatNumber; 
 		} else {
-			throw new IncorrectSeatException ("Seat incorrect.\n");
+			throw new IncorrectSeatException ("Seat does not exist.\n");
 			
 		}
 		

@@ -40,17 +40,9 @@ public class SeatManager {
 		return seatList;
 	}
 	
-	public int existSeat (int rowNumber, int seatNumber) { //Ref: https://refactorizando.com/encontrar-elemento-lista-java/
-		int seatIndex = -1;
-		int i = 0;
-		while (seatIndex==-1 && seatList.size() != i) {
-			if (seatList.get(i).getRowNumber() == (rowNumber) && seatList.get(i).getSeatNumber() == (seatNumber)) {
-				seatIndex = i;
-			}else {
-				seatIndex = -1;
-				i++;		
-			}
-		}
+	public int existSeat (int rowNumber, int seatNumber) { //After Task1 Feedback
+		Seat seat = new Seat(rowNumber, seatNumber, null);
+		int seatIndex = seatList.indexOf(seat);
 		
 		return seatIndex;
 	}

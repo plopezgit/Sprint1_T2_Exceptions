@@ -41,7 +41,7 @@ Getters por todos los atributos. OK
 Equals: devolverá que dos butacas son iguales si la fila y el asiento son iguales. OK
 toString: devolverá un String con el siguiente formato: “Fila: 5, Asiento: 20, Persona: Maria Febrer” OK
 
-Clase Cine
+Clase Cine OK
 Contendrá todos los métodos que permiten interactuar al usuario con la aplicación.
 Atributos:
 Número de filas del cine.
@@ -86,7 +86,7 @@ introducirAsiento: Pide el asiento, si el número está entre 1 y el número tot
 lo devuelve. Si no, devuelve una excepción del tipo ExcepcioSeientIncorrecte.
 
 
-Clase GestioButacas
+Clase GestioButacas OK
 Contendrá un ArrayList de butacas y los métodos necesarios para añadir, 
 eliminar y buscar las butacas en ArrayList.
 Atributos:
