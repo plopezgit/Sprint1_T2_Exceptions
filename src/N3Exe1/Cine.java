@@ -138,7 +138,7 @@ public class Cine {
 		return validName;
 	}
 
-	public void askInitialDataOfTheater() {
+	private void askInitialDataOfTheater() {
 		theaterQuantityOfRows = Input.inputInt("Set the quantity of rows of the Cinema:");
 		theaterQuantityOfSeatsByRow = Input.inputInt("Set the quantity of seats by row:");
 	}

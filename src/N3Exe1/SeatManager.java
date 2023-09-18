@@ -40,7 +40,7 @@ public class SeatManager {
 		return seatList;
 	}
 	
-	public int existSeat (int rowNumber, int seatNumber) { //After Task1 Feedback
+	private int existSeat (int rowNumber, int seatNumber) { //After Task1 Feedback
 		Seat seat = new Seat(rowNumber, seatNumber);
 		int seatIndex = seatList.indexOf(seat);
 		

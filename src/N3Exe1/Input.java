@@ -152,8 +152,6 @@ public class Input {
                 okey = true;
             } catch (InputMismatchException ex) {
                 System.out.println("There is a format error on your response.\n");
-            } catch (Exception ex) {
-                System.out.println(ex.toString());
             }
             input.nextLine();
         } while (!okey);
