@@ -6,8 +6,14 @@ import java.util.Scanner;
 public class Input {
 	
 	private static final Scanner input = new Scanner(System.in); //Reusing part of the class Tool created during study
-	private static final String FORMAT_ERR_MSG = "There is a format error on your response.";
-	private static final String INVALID_ERR_MSG = "Your response is not valid.";
+	private static final String BYTE_FORMAT_ERR_MSG = "There is a format error on your response. Enter a byte";
+	private static final String INT_FORMAT_ERR_MSG = "There is a format error on your response. Enter a integer";
+	private static final String DOUBLE_FORMAT_ERR_MSG = "There is a format error on your response. Enter a double";
+	private static final String FLOAT_FORMAT_ERR_MSG = "There is a format error on your response. Enter a float";
+	private static final String EMPTY_STRING_ERR_MSG = "Your respose must not be empty.";
+	private static final String YES_NO_ERR_MSG = "There is an error on your response. Enter Y or N if yes or no.";
+	private static final String CHAR_LENGTH_CONROL_ERR_MSG = "There is an error on your response. Enter a single char";
+
 	
 	public static byte inputByte (String pregunta) {
 		byte response = 0;
@@ -18,7 +24,7 @@ public class Input {
 				response = input.nextByte();
 				okey = true;
 			} catch (InputMismatchException ex) {
-				System.err.println(FORMAT_ERR_MSG);
+				System.err.println(BYTE_FORMAT_ERR_MSG);
 			}
 			input.nextLine();
 		} while (!okey);
@@ -34,7 +40,7 @@ public class Input {
 				response = input.nextInt();
 				okey = true;
 			} catch (InputMismatchException ex) {
-				System.err.println(FORMAT_ERR_MSG);
+				System.err.println(INT_FORMAT_ERR_MSG);
 			}
 			input.nextLine();
 		} while (!okey);
@@ -47,10 +53,15 @@ public class Input {
 		do {
 			System.out.println(pregunta);
 			try {
-				response = input.nextLine();	
+				response = input.nextLine();
+				if (response.isEmpty()) { 
+					throw new Exception(EMPTY_STRING_ERR_MSG); 
+				} else {
+					
 				okey = true;
+				}
 			} catch (Exception ex) {
-				System.err.println("There is an error when introducing the text of your response.");
+				System.err.println(ex.getMessage());
 			}
 		} while (!okey);
 		return response;	
@@ -65,7 +76,7 @@ public class Input {
 				response = input.nextDouble();
 				okey = true;
 			} catch (InputMismatchException ex) {
-				System.err.println(FORMAT_ERR_MSG);
+				System.err.println(DOUBLE_FORMAT_ERR_MSG);
 			}
 			input.nextLine();
 		} while (!okey);		
@@ -81,7 +92,7 @@ public class Input {
 				response = input.nextFloat();
 				okey = true;
 			} catch (InputMismatchException ex) {
-				System.err.println(FORMAT_ERR_MSG);
+				System.err.println(FLOAT_FORMAT_ERR_MSG);
 			}
 			input.nextLine();
 		} while (!okey);		
@@ -97,37 +108,46 @@ public class Input {
             System.out.print(pregunta);
             try {
                 userResponse = input.nextLine().toUpperCase();
-                okey = true;
                 if (userResponse.charAt(0) == 'Y') {
                     booleanResponse = true;
+                    okey = true;
                 } else if (userResponse.charAt(0) == 'N') {
                     booleanResponse = false;
+                    okey = true;
                 } else {
-                    System.err.println(INVALID_ERR_MSG);
-                    okey = false;
+                	throw new Exception(YES_NO_ERR_MSG);
                 }
             } catch (Exception ex) {
-                System.err.println("There is an error on your response.");
+                System.err.println(ex.getMessage());
             }
         } while (!okey);
         return booleanResponse;
 	 }
 	
     public static char inputChar(String mensaje) {
-        char response = 0;
-        boolean okey = false;
+       String response = "";
+       char inputChar = 0; 
+       boolean okey = false;
 
         do {
             System.out.print(mensaje);
             try {
-                response = input.next().charAt(0);
+                response = input.nextLine();
+                
+               if (response.length() > 1) {
+            	   throw new Exception(CHAR_LENGTH_CONROL_ERR_MSG);
+               } else if (response.isEmpty()){
+            	   throw new Exception(EMPTY_STRING_ERR_MSG);
+               } else {
                 okey = true;
-            } catch (InputMismatchException ex) {
-                System.err.println(FORMAT_ERR_MSG);
+               }
+            } catch (Exception ex) {
+                System.err.println(ex.getMessage());
             }
             input.nextLine();
         } while (!okey);
-        return response;
+        
+        return inputChar = response.charAt(0);
     }
 
 }
