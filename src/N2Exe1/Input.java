@@ -6,6 +6,8 @@ import java.util.Scanner;
 public class Input {
 	
 	private static final Scanner input = new Scanner(System.in); //Reusing part of the class Tool created during study
+	private static final String FORMAT_ERR_MSG = "There is a format error on your response.";
+	private static final String INVALID_ERR_MSG = "Your response is not valid.";
 	
 	public static byte inputByte (String pregunta) {
 		byte response = 0;
@@ -16,7 +18,7 @@ public class Input {
 				response = input.nextByte();
 				okey = true;
 			} catch (InputMismatchException ex) {
-				System.out.println("There is a format error on your response.");
+				System.err.println(FORMAT_ERR_MSG);
 			}
 			input.nextLine();
 		} while (!okey);
@@ -32,41 +34,11 @@ public class Input {
 				response = input.nextInt();
 				okey = true;
 			} catch (InputMismatchException ex) {
-				System.out.println("There is a format error on your response.");
+				System.err.println(FORMAT_ERR_MSG);
 			}
 			input.nextLine();
 		} while (!okey);
 		return response;
-	}
-	
-	public static String inputStringLow (String pregunta) {
-		String response = "";
-		boolean okey = false;
-		do {
-			System.out.println(pregunta);
-			try {
-				response = input.nextLine().toLowerCase();	
-				okey = true;
-			} catch (Exception ex) {
-				System.out.println("There is an error on your response.");
-			}
-		} while (!okey);
-		return response;	
-	}
-	
-	public static String inputStringUp (String pregunta) {
-		String response = "";
-		boolean okey = false;
-		do {
-			System.out.println(pregunta);
-			try {
-				response = input.nextLine().toUpperCase();	
-				okey = true;
-			} catch (Exception ex) {
-				System.out.println("There is an error on your response.");
-			}
-		} while (!okey);
-		return response;	
 	}
 	
 	public static String inputString (String pregunta) {
@@ -78,7 +50,7 @@ public class Input {
 				response = input.nextLine();	
 				okey = true;
 			} catch (Exception ex) {
-				System.out.println("There is an error on your response.");
+				System.err.println("There is an error when introducing the text of your response.");
 			}
 		} while (!okey);
 		return response;	
@@ -93,7 +65,7 @@ public class Input {
 				response = input.nextDouble();
 				okey = true;
 			} catch (InputMismatchException ex) {
-				System.out.println("There is a format error on your response.");
+				System.err.println(FORMAT_ERR_MSG);
 			}
 			input.nextLine();
 		} while (!okey);		
@@ -109,7 +81,7 @@ public class Input {
 				response = input.nextFloat();
 				okey = true;
 			} catch (InputMismatchException ex) {
-				System.out.println("There is a format error on your response.");
+				System.err.println(FORMAT_ERR_MSG);
 			}
 			input.nextLine();
 		} while (!okey);		
@@ -131,11 +103,11 @@ public class Input {
                 } else if (userResponse.charAt(0) == 'N') {
                     booleanResponse = false;
                 } else {
-                    System.out.println("Your response is not valid.");
+                    System.err.println(INVALID_ERR_MSG);
                     okey = false;
                 }
             } catch (Exception ex) {
-                System.out.println("There is an error on your response.");
+                System.err.println("There is an error on your response.");
             }
         } while (!okey);
         return booleanResponse;
@@ -151,7 +123,7 @@ public class Input {
                 response = input.next().charAt(0);
                 okey = true;
             } catch (InputMismatchException ex) {
-                System.out.println("There is a format error on your response.");
+                System.err.println(FORMAT_ERR_MSG);
             }
             input.nextLine();
         } while (!okey);
