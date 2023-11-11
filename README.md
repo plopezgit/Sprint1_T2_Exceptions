@@ -1,7 +1,9 @@
 # Sprint1_T2_Exceptions
 
 Level 1
+
 - Exercise 1
+
 Create a class called "Product" with the name and price attributes, and another class called "Sale". This class has as attributes a collection of products and the total price of the sale.
 
 The "Sale" class has a method called calculateTotal() that throws the custom exception SaleEmptyException and displays "To make a sale you must first add products" if the collection of products is empty. If the collection has products, then it must loop through the collection and store the sum of all the product prices in the totalsaleprice attribute.
@@ -10,14 +12,21 @@ The custom exception VendaBuidaException must be a child of the Exception class.
 
 Write the necessary code to generate and catch an exception of type ArrayIndexOutOfBoundsException.
 
+> ##### Solution notes:
+> - Sale class method calculateTotalSalesAmount() thorws the custom-made exception EmptySaleListException. The exception is cautght by try-catch structure around teh method on the main class demo.
+> - The custom exception is a Class that extends of the class Exception (https://docs.oracle.com/javase%2F7%2Fdocs%2Fapi%2F%2F/java/lang/Exception.html); It contains a no-params constructure, overloaded it with one that receive a String message which is transmitted to the parent attribute by super keyword; 
+> - ArrayIndexOutOfBoundsException and IndexOutOfBoundsException were captured simply by simulating non-viable Array/ArrayList modification.
+
 
 Level 2
+
 - Exercise 1
+
 Create a class called "Input". This class must be used to control the different exceptions that can appear in Java when entering data by keyboard using the Scanner class.
 
 The first thing to do is to instantiate an object of the Scanner class and from there, create static methods to read the different types of data from the keyboard.
 
-  important
+Important:
 
 It is important that if an exception is raised in any method, we handle it and ask the user for the data again until it is properly entered. For example: If you enter a float with a period instead of a comma, it should show “Format Error”. Until the user enters a well-formed float, he/she must keep asking for the data.
 
@@ -25,50 +34,53 @@ All methods receive a String with the message to be displayed to the user, for e
 
 Methods to be implemented by catching the exception of the InputMismatchException class:
 
-public static byte readByte(String message);
-
-public static int readInt(String message);
-
-public static float readFloat(String message);
-
-public static double readDouble(String message);
+- public static byte readByte(String message);
+- public static int readInt(String message);
+- public static float readFloat(String message);
+- public static double readDouble(String message);
 
 Methods to implement capturing the exception of the Exception class:
 
-public static char readChar(String message);
+- public static char readChar(String message);
+- public static String readString(String message);
+- public static boolean readIfNo(String message), if the user enters "s", it returns "true", if the user enters "n", it returns "false".
 
-public static String readString(String message);
+> ##### Solution notes:
+> - Uses System.err.println("");
+> - All the error messages are declared as Input class final attributes
 
-public static boolean readIfNo(String message), if the user enters "s", it returns "true", if the user enters "n", it returns "false".
 
 Level 3
+
 - Exercise 1
+
 A famous cinema company has asked us to develop an application for the reservation of seats in their cinemas. The application will be used by sellers when selling tickets.
 
-operation
+Operations: 
+
 Once the application has started, it will ask the user how many rows and how many seats per row the cinema has. Once this data is entered, the following menu will be displayed:
 
-1.- Show all reserved seats.
+- Show all reserved seats.
+- Show the seats reserved by one person.
+- Reserve a seat.
+- Cancel the reservation of a seat.
+- Cancel all reservations of a person.
+- Exit.
 
-2.- Show the seats reserved by one person.
 
-3.- Reserve a seat.
+> ##### Solution notes:
+> - Uses: throw new {custom-madeExceptionName} ("message"); as part of diverse methods implemmentation.
 
-4.- Cancel the reservation of a seat.
 
-5.- Cancel all reservations of a person.
-
-0.- Exit.
-
+_Detailed requirements:_
 
 The application will have the following classes:
 
-Main Class
+**Main Class**
 
 It will have the main of the application where an object of the Cine class will be instantiated and call its start method.
 
-
-Armchair Class
+**Seat Class**
 
 It will have the details of a seat:
 
@@ -91,7 +103,7 @@ Equal: will return that two seats are equal if the row and seat are the same.
 toString: will return a String with the following format: "Row: 5, Seat: 20, Person: Maria Febrer"
 
 
-Cinema class
+**Cine class**
 
 It will contain all the methods that allow the user to interact with the application.
 
@@ -130,7 +142,7 @@ enterRow: Requests the number of rows, if this is between 1 and the total number
 enterSeat: Requests the seat, if the number is between 1 and the total number of seats, returns it. If not, it returns an exception of type IncorrectSeatException.
 
 
-Armchair Management class
+**Seat Manager class**
 
 It will contain an ArrayList of armchairs and the necessary methods to add, remove and search for the armchairs in the ArrayList.
 

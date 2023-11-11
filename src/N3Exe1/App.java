@@ -1,6 +1,6 @@
 package N3Exe1;
 
-public class Principal {
+public class App {
 
 	public static void main(String[] args) {
 		Cine cine = new Cine();

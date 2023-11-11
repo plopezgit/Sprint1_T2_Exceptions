@@ -1,6 +1,6 @@
 package N2Exe1;
 
-public class ExecuteInput {
+public class App {
 
 	public static void main(String[] args) {
 		

@@ -2,7 +2,7 @@ package N1Exe1;
 
 import N1Exe1.Exceptions.EmptySaleListException;
 
-public class ExecuteCallToCalculateTotalSalesAmount {
+public class App {
 
 	public static void main(String[] args) {
 
